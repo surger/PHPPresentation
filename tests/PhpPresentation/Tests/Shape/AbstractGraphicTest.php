@@ -86,4 +86,14 @@ class AbstractGraphicTest extends TestCase
         $this->assertEquals($min, $stub->getWidth());
         $this->assertEquals($min * ($min / ($max * ($min / ($max * ($min / $max))))), $stub->getHeight());
     }
+    
+    public function testSettingWidthWithoutHeight()
+    {
+        $max = 20;
+        /** @var AbstractGraphic $stub */
+        $stub = $this->getMockForAbstractClass('PhpOffice\\PhpPresentation\\Shape\\AbstractGraphic');
+        $this->assertInstanceOf('PhpOffice\\PhpPresentation\\Shape\\AbstractGraphic', $stub->setWidth($max));
+        $this->assertEquals($max, $stub->getWidth());
+        $this->assertEquals(0, $stub->getHeight());
+    }    
 }
